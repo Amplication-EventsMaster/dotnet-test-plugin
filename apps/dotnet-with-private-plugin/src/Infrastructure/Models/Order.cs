@@ -9,16 +9,16 @@ public class OrderDbModel
     [Required()]
     public DateTime CreatedAt { get; set; }
 
-    public string? CustomerId { get; set; }
-
-    [ForeignKey(nameof(CustomerId))]
-    public CustomerDbModel? Customer { get; set; } = null;
-
     public DateTime? Date { get; set; }
 
     [Key()]
     [Required()]
     public string Id { get; set; }
+
+    public string? MyCustomerId { get; set; }
+
+    [ForeignKey(nameof(MyCustomerId))]
+    public CustomerDbModel? MyCustomer { get; set; } = null;
 
     [Required()]
     public DateTime UpdatedAt { get; set; }

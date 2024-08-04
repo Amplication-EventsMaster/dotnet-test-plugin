@@ -34,10 +34,10 @@ public abstract class OrdersServiceBase : IOrdersService
         {
             order.Id = createDto.Id;
         }
-        if (createDto.Customer != null)
+        if (createDto.MyCustomer != null)
         {
-            order.Customer = await _context
-                .Customers.Where(customer => createDto.Customer.Id == customer.Id)
+            order.MyCustomer = await _context
+                .Customers.Where(customer => createDto.MyCustomer.Id == customer.Id)
                 .FirstOrDefaultAsync();
         }
 
@@ -75,7 +75,7 @@ public abstract class OrdersServiceBase : IOrdersService
     public async Task<List<Order>> Orders(OrderFindManyArgs findManyArgs)
     {
         var orders = await _context
-            .Orders.Include(x => x.Customer)
+            .Orders.Include(x => x.MyCustomer)
             .ApplyWhere(findManyArgs.Where)
             .ApplySkip(findManyArgs.Skip)
             .ApplyTake(findManyArgs.Take)
@@ -138,18 +138,18 @@ public abstract class OrdersServiceBase : IOrdersService
     }
 
     /// <summary>
-    /// Get a customer record for order
+    /// Get a my customer record for order
     /// </summary>
-    public async Task<Customer> GetCustomer(OrderWhereUniqueInput uniqueId)
+    public async Task<Customer> GetMyCustomer(OrderWhereUniqueInput uniqueId)
     {
         var order = await _context
             .Orders.Where(order => order.Id == uniqueId.Id)
-            .Include(order => order.Customer)
+            .Include(order => order.MyCustomer)
             .FirstOrDefaultAsync();
         if (order == null)
         {
             throw new NotFoundException();
         }
-        return order.Customer.ToDto();
+        return order.MyCustomer.ToDto();
     }
 }

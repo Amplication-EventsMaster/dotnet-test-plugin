@@ -10,9 +10,9 @@ public static class OrdersExtensions
         return new Order
         {
             CreatedAt = model.CreatedAt,
-            Customer = model.CustomerId,
             Date = model.Date,
             Id = model.Id,
+            MyCustomer = model.MyCustomerId,
             UpdatedAt = model.UpdatedAt,
         };
     }
@@ -28,9 +28,9 @@ public static class OrdersExtensions
         {
             order.CreatedAt = updateDto.CreatedAt.Value;
         }
-        if (updateDto.Customer != null)
+        if (updateDto.MyCustomer != null)
         {
-            order.CustomerId = updateDto.Customer;
+            order.MyCustomerId = updateDto.MyCustomer;
         }
         if (updateDto.UpdatedAt != null)
         {
