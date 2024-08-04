@@ -36,7 +36,7 @@ public interface IOrdersService
     public Task UpdateOrder(OrderWhereUniqueInput uniqueId, OrderUpdateInput updateDto);
 
     /// <summary>
-    /// Get a customer record for order
+    /// Get a my customer record for order
     /// </summary>
-    public Task<Customer> GetCustomer(OrderWhereUniqueInput uniqueId);
+    public Task<Customer> GetMyCustomer(OrderWhereUniqueInput uniqueId);
 }

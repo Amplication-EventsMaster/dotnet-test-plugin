@@ -217,7 +217,7 @@ public abstract class CustomersServiceBase : ICustomersService
     )
     {
         var orders = await _context
-            .Orders.Where(m => m.CustomerId == uniqueId.Id)
+            .Orders.Where(m => m.MyCustomerId == uniqueId.Id)
             .ApplyWhere(customerFindManyArgs.Where)
             .ApplySkip(customerFindManyArgs.Skip)
             .ApplyTake(customerFindManyArgs.Take)

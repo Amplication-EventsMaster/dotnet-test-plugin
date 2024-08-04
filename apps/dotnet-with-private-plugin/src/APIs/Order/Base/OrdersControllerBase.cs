@@ -98,14 +98,14 @@ public abstract class OrdersControllerBase : ControllerBase
     }
 
     /// <summary>
-    /// Get a customer record for order
+    /// Get a my customer record for order
     /// </summary>
     [HttpGet("{Id}/customers")]
-    public async Task<ActionResult<List<Customer>>> GetCustomer(
+    public async Task<ActionResult<List<Customer>>> GetMyCustomer(
         [FromRoute()] OrderWhereUniqueInput uniqueId
     )
     {
-        var customer = await _service.GetCustomer(uniqueId);
+        var customer = await _service.GetMyCustomer(uniqueId);
         return Ok(customer);
     }
 }
