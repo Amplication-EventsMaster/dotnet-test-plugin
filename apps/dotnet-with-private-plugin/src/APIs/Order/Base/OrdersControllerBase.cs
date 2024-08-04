@@ -1,5 +1,4 @@
 using DotnetWithPrivatePlugin.APIs;
-using DotnetWithPrivatePlugin.APIs.Common;
 using DotnetWithPrivatePlugin.APIs.Dtos;
 using DotnetWithPrivatePlugin.APIs.Errors;
 using Microsoft.AspNetCore.Authorization;
@@ -57,15 +56,6 @@ public abstract class OrdersControllerBase : ControllerBase
     public async Task<ActionResult<List<Order>>> Orders([FromQuery()] OrderFindManyArgs filter)
     {
         return Ok(await _service.Orders(filter));
-    }
-
-    /// <summary>
-    /// Meta data about order records
-    /// </summary>
-    [HttpPost("meta")]
-    public async Task<ActionResult<MetadataDto>> OrdersMeta([FromQuery()] OrderFindManyArgs filter)
-    {
-        return Ok(await _service.OrdersMeta(filter));
     }
 
     /// <summary>
